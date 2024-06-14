@@ -72,7 +72,8 @@ async function run() {
             res.send(result)
         })
 
-        app.get("/courses/:id", verifyToken, async (req, res) => {
+        app.get("/courses/:id", async (req, res) => {
+            //verifyToken
             const id = req.params.id
             const query = { _id: new ObjectId(id) }
             const result = await coursesCollection.findOne(query)
