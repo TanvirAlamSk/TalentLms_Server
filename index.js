@@ -79,6 +79,12 @@ async function run() {
             const result = await coursesCollection.findOne(query)
             res.send(result)
         })
+        app.get("/my-courses", async (req, res) => {
+            const email = req.query.email
+            const query = { email }
+            const result = await coursesCollection.find(query).toArray()
+            res.send(result)
+        })
 
         app.patch("/courses/:id", verifyToken, async (req, res) => {
             const id = req.params.id
