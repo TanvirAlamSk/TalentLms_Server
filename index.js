@@ -35,9 +35,9 @@ const verifyToken = (req, res, next) => {
     }
     const token = req.headers.authorization.split(" ")[1]
     jwt.verify(token, process.env.ACCESS_TOKEN, function (error, decoded) {
-        if (error) {
-            return res.status(403).send("Forbidden Access")
-        }
+        // if (error) {
+        //     return res.status(403).send("Forbidden Access")
+        // }
         req.decoded = decoded
         next()
     });
