@@ -23,7 +23,8 @@ const client = new MongoClient(uri, {
 
 
 const createToken = (email) => {
-    const token = jwt.sign({ email }, process.env.ACCESS_TOKEN, { expiresIn: "2 days" }
+    const token = jwt.sign({ email }, process.env.ACCESS_TOKEN
+        // , { expiresIn: "2 days" }
     )
     return token;
 }
