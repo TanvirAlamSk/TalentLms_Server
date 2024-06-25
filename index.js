@@ -126,9 +126,6 @@ async function run() {
         app.post("/users", async (req, res) => {
             const data = req.body
             const query = { email: data.email }
-            // if (req.body.email !== req.decoded.email) {
-            //     return res.status(403).send("Forbidden Access")
-            // }
             const isExists = await usersCollection.findOne(query)
             const token = createToken(data.email)
             if (!isExists) {
@@ -141,6 +138,9 @@ async function run() {
         )
 
         app.patch("/users", async (req, res) => {
+            // if (req.body.email !== req.decoded.email) {
+            //     return res.status(403).send("Forbidden Access")
+            // }
             const filter = { email: req.query.email }
             const updatedDoc = {
                 $set: req.body
@@ -165,6 +165,7 @@ async function run() {
             const result = await enrollCourseCollection.findOne(query)
             res.send(result)
         })
+
         app.post("/enroll-course", async (req, res) => {
             const data = req.body
             const result = await enrollCourseCollection.insertOne(data)
